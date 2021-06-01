@@ -1,0 +1,4 @@
+[deps]
+CMBLensing = "b60c06c0-7e54-11e8-3788-4bd722d65317"
+CUDA = "052768ef-5323-5732-b1bb-66c8b64840ba"
+MPIClusterManagers = "e7922434-ae4b-11e9-05c5-9780451d2c66"
