@@ -1,4 +1,6 @@
 #/usr/bin/env julia
+import Pkg
+Pkg.activate(".")
 
 # init
 using Distributed, CMBLensing, CUDA, MPIClusterManagers
@@ -19,7 +21,7 @@ chains = sample_joint(
     nsamps_per_chain = 100,
     nfilewrite       = 20,
     nsavemaps        = 20,
-    filename         = "test_chain.jld2",
+    filename         = ARGS[1], # "test_chain.jld2",
     resume           = false,
     θrange           = (Aϕ = range(0.8, 1.2, length=25), r = range(0.01 ,0.2, length=25)),
     progress         = :summary,
