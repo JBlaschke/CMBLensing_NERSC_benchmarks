@@ -18,7 +18,7 @@ mk_jobscript () {
 #SBATCH -N $3
 #SBATCH -C gpu
 #SBATCH -q special
-#SBATCH -t 00:30:00
+#SBATCH -t $4
 #SBATCH -A m1759
 #SBATCH --exclusive
 
@@ -31,7 +31,7 @@ module load cgpu gcc cuda/11.3.0 openmpi julia/1.6.0-test python
 export OMP_NUM_THREADS=1
 export OMP_PLACES=threads
 export OMP_PROC_BIND=spread
-
+export JULIA_MPI_TRANSPORT=MPI
 
 #run the application:
 srun -n $1 -G $2 julia run_chain.jl test_chain_$1_$2_$3.jld2
@@ -49,5 +49,5 @@ run_jobscript () {
 }
 
 
-mk_jobscript $1 $2 $3
+mk_jobscript $1 $2 $3 $4
 run_jobscript $1 $2 $3
